@@ -53,3 +53,12 @@ jobs:
           name: corne_left-nice_nano_v2-zmk-studio
           path: build/zephyr/zmk.uf2
           compression-level: 0
+      - name: West Build (Corne Left Debug)
+        run: |
+          west build --pristine -s zmk/app -b nice_nano_v2 -- -DSHIELD=corne_left -DCONFIG_ZMK_USB_LOGGING=y -DCONFIG_LOG_DEFAULT_LEVEL=4 -DCONFIG_ZMK_KSCAN_LOG_LEVEL_DBG=y -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: Corne Left Debug Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: corne_left-nice_nano_v2-zmk-debug
+          path: build/zephyr/zmk.uf2
+          compression-level: 0
